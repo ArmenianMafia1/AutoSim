@@ -4,13 +4,14 @@
 session_start();
 $_SESSION = array();
 $_POST = array();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>AutoSim</title>
-  <link href="bullscows.css" type="text/css" rel="stylesheet"/>
+  <link href="autosim.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
 
