@@ -11,6 +11,11 @@ class Game
     public $schedule = Array();
     public $carlist = Array();
 
+    function update() {
+        $this->week = 2;
+        echo "updated week to $this->week!!!";
+
+    }
     function run_race() {
         $temp_carlist = $this->carlist;
 
@@ -31,7 +36,7 @@ class Game
         }
 
         $race = $this->schedule[($this->week-1)];
-        echo "$this->year $race->name <br>";
+        echo "$this->year $race->name - Race $this->week of $this->startingNumberOfRaces <br>";
 
         for ($x = 1; $x <= $this->carsPerRace; $x++) {
             /*$val = array_rand($temp_carlist, $num = 1);
@@ -63,6 +68,10 @@ class Game
             $org = $car->organization;
 
             echo "#$x: $car->number | $driver->name | $car->sponsor1 | $org->name |  $org->manufacture  <br>";
+
+
         }
     }
+
+
 }

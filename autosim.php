@@ -5,8 +5,7 @@ require_once('Driver.php');
 require_once('Organization.php');
 require_once('Game.php');
 require_once('Race.php');
-$_SESSION = array();
-$_POST = array();
+
 ?>
 
 <!DOCTYPE html>
@@ -21,23 +20,36 @@ $_POST = array();
   <title>AutoSim</title>
 </head>
 
-<form id="signin" action="runrace.php" method="POST">
+<form id="gameform">
     <fieldset>
-        <p><img src="images/banner.png" width="521" height="346" alt="Bulls and Cows Banner"></p>
-        <p>Welcome to AutoSim!</p>
-        <p><label for="name">Your Name: </label>
-            <input type="text" name="name" id="name"></p>
-        <p><input type="submit" value="Start Game"></p>
+        <?php
+    if (isset($_SESSION['name'])) {
+        echo '<h1>';
+        $value = strip_tags($_SESSION['name']);
+        echo $value;
+        echo " Alpha Test</h1>";
+
+    }
+    else {
+        $_SESSION = array();
+        $_POST = array();
+        unset($_SESSION['name']);
+
+        header("Location: index.php");
+    }
+
+        ?>
     </fieldset>
 </form>
-
 
 <body>
 
 <form action="" method="POST">
-    <input type="submit" name="submit">
+    <input type="submit" name="submit" value="Run Race">
+    <input type="submit" name="submit2" value="submit2">
 </form>
 
+<input type="file" name="file" id="file">
 
 <form id="gameform">
     <fieldset>
@@ -196,13 +208,20 @@ $_POST = array();
     //echo '<pre>'; print_r($game->schedule); echo '</p
 
     if (isset($_POST['submit'])) {
+
+        //$game->run_race();
+        //$game->update();
+
+        //someFunction();
+    }
+
+    if (isset($_POST['submit2'])) {
         someFunction();
+        //someFunction();
     }
-    else {
-        echo "error";
-    }
+
     function someFunction() {
-        echo 'HI';
+        echo "hi";
     }
 
 
@@ -210,7 +229,7 @@ $_POST = array();
     ?>
 
 
-
+        <div id="play-area"></div>
 
 
 </html>

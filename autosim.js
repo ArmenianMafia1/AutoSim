@@ -1,4 +1,108 @@
+
 function autosim() {
+
+    class Game {
+        constructor() {
+            this.carlist = new Array();
+            this.week = 1;
+            this.year = 2009;
+        }
+
+        runRace() {
+            console.log("starting carlist: " + this.carlist)
+            var carlist2 =  [...this.carlist];
+            var carlist3 = Array();
+            while( carlist2.length ) {
+                var index = Math.floor( Math.random()*carlist2.length );
+                console.log( carlist2[index] ); // Log the item
+                carlist3.push( carlist2[index] );
+                carlist2.splice( index, 1 ); // Remove the item from the array
+                console.log("pushed " + carlist3[0]);
+            }
+
+            console.log("pushed!!!" + carlist3);
+            return carlist3;
+        }
+
+    }
+
+    class Car {
+        constructor(number, sponsor1, driver, organization) {
+            this.number = number;
+            this.sponsor1 = sponsor1;
+            this.driver = driver;
+            this.organization = organization;
+        }
+    }
+
+
+    class Driver {
+        constructor(name) {
+            this.name = name;
+        }
+    }
+
+    class Organization {
+        constructor(name, manufacture) {
+            this.name = name;
+            this.manufacture = manufacture;
+        }
+    }
+
+    /*var xhr=new XMLHttpRequest();
+    xhr.open("GET","roster.tsv");
+    xhr.onload=function(){
+        console.log(xhr.responseText);
+    }
+    xhr.send();*/
+    var game = new Game();
+
+    document.getElementById('file').onchange = function(){
+
+        var file = this.files[0];
+
+        var reader = new FileReader();
+        reader.onload = function(progressEvent){
+            // Entire file
+            console.log(this.result);
+
+            // By lines
+            var lines = this.result.split('\n');
+            for(var line = 1; line < lines.length; line++){
+                //console.log(lines[line]);
+
+                var data = lines[line].split('~');
+
+                console.log(data);
+
+                var driver = new Driver(data[1]);
+
+                var organization = new Organization(data[4], data[5])
+
+                var car = new Car(data[0], data[2], driver, organization);
+
+                game.carlist.push(car);
+
+
+            }
+
+            for(var line1 = 0; line1 < game.carlist.length; line1++){
+
+                console.log("carlist " + game.carlist[line1].driver.name);
+
+            }
+
+
+
+
+        };
+        reader.readAsText(file);
+
+
+
+
+    };
+
 
 
     var guesses = 0;
@@ -40,7 +144,26 @@ function autosim() {
     document.getElementById("race").onclick = function (event) {
         event.preventDefault();
 
-        document.getElementById("message").innerHTML = "<h1>Ran Race</h1>";
+        game.week += 1;
+
+        document.getElementById("message").innerHTML = "<h1>Ran Race " + game.week + "</h1>";
+
+        var results = game.runRace();
+
+        console.log(results);
+
+        var html = "";
+
+        for (var i = 0; i < results.length; i++) {
+            var num1 = i+1;
+            var str1  = "#" + num1 + ' ' + results[i].number + ' ' + results[i].driver.name + '<br>';
+            html += str1;
+
+
+        }
+
+
+        document.getElementById("message").innerHTML += html;
     }
       /*
     document.getElementById("ng").onclick = function(event) {
