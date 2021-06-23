@@ -4,16 +4,23 @@ body {
     font-family: Helvetica, Arial, sans-serif;
 }
 
+
 form {
     width: 800px;
     margin: 0 auto 0 auto;
-    background-color: beige;
+    background-color: black;
+}
+
+p {
+    color: white;
+    text-align: left;
 }
 
 form h1 {
     text-align: center;
     font-size: 1.5em;
     font-weight: bold;
+    color: white;
 }
 
 form p {
@@ -90,4 +97,10 @@ p.end {
 p.solution {
     margin-top: 35em;
     text-align: center;
+}
+
+p.standings {
+    font-size: .75em;
+    text-align: left;
+    color: white;
 }

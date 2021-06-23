@@ -44,12 +44,12 @@ require_once('Race.php');
 
 <body>
 
-<form action="" method="POST">
-    <input type="submit" name="submit" value="Run Race">
-    <input type="submit" name="submit2" value="submit2">
-</form>
 
-<input type="file" name="file" id="file">
+<input type="file" name="file" id="roster" value="Upload roster.tsv Here">
+
+<input type="file" name="file" id="gamerules" value="Upload gamerules.tsv Here">
+
+<input type="file" name="file" id="freeAgents" value="Upload freeagents.tsv Here">
 
 <form id="gameform">
     <fieldset>
